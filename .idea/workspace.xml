@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3867ac5-e462-4313-b713-5b22d0a8439a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/leetcode/InvertBinaryTree_226.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LeetcodeGitHub/leetcode/PowXN_50.class" afterPath="$PROJECT_DIR$/out/production/LeetcodeGitHub/leetcode/PowXN_50.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -708,12 +706,12 @@
       <workItem from="1498786154839" duration="789000" />
       <workItem from="1499045412671" duration="1660000" />
       <workItem from="1499071171801" duration="2876000" />
-      <workItem from="1499134635949" duration="590000" />
+      <workItem from="1499134635949" duration="705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7613000" />
+    <option name="totallyTimeSpent" value="7728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="830" extended-state="6" />

@@ -54,7 +54,7 @@ public class MostFrequentSubtreeSum_508 {
         TreeNode treeNode1 = mostFrequentSubtreeSum_508.new TreeNode(2);
         TreeNode treeNode2 = mostFrequentSubtreeSum_508.new TreeNode(-3);
         treeNode.left = treeNode1;
-        treeNode.right = treeNode2
+        treeNode.right = treeNode2;
     }
 
 

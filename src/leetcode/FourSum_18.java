@@ -1,93 +1,147 @@
 package leetcode;
 
+import org.omg.PortableInterceptor.INACTIVE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by yongfeng on 17/4/7.
+ * Created by yongfeng on 17/7/14.
  */
 public class FourSum_18 {
+
     public List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> res = new ArrayList<>();
-        Arrays.sort(nums);
-        int len = nums.length;
-        if(len < 4){
+        if(null == nums){
             return res;
         }
-
-        for(int i = 0 ; i < len ; ++i){
-            for(int j = i + 1; j < len ; ++j ){
-                twoNum(nums,target,i,j,res,len);
+        Arrays.sort(nums);
+        int len  = nums.length;
+        for(int i = 0 ; i + 3 < len ; ++i ){
+            while(i + 3 < len && i > 0 &&  nums[i] == nums[i - 1] ){
+                ++i;
+            }
+            for(int j = i + 1; j + 2 < len ; ++j){
+                while(j + 2 < len && j > i + 1 && nums[j] == nums[j - 1]){
+                    ++j;
+                }
+                int left = j + 1;
+                int right = len - 1;
+                while(left < right){
+                    int tmp = nums[i] + nums[j] + nums[left] + nums[right];
+                    if(target == tmp){
+                        res.add(Arrays.asList(nums[i],nums[j],nums[left],nums[right]));
+                        while(left < right && nums[left] == nums[left + 1]){
+                            ++left;
+                        }
+                        while(left < right && nums[right] == nums[right - 1]){
+                            --right;
+                        }
+                        ++left;
+                        --right;
+                    }else if(target < tmp){
+                        --right;
+                    }else{
+                        ++left;
+                    }
+                }
             }
         }
-
         return res;
     }
-
-    public void twoNum(int[] nums,int target,int start,int end,List<List<Integer>> res,int len){
-        if(end - start < 2 || start < 0 || end >= len){
-            return;
-        }
-        if(nums[start] + nums[end] + nums[start + 1] + nums[start + 2] > target){
-            return ;
-        }else if(nums[start] + nums[end] + nums[end - 1] + nums[end - 2] < target){
-            return ;
-        }else{
-            int left = start + 1;
-            int right = end - 1;
-            while (left < right){
-                int sum = nums[start] + nums[end] + nums[left] + nums[right];
-                if(sum == target){
-                    List<Integer> tmp = new ArrayList<>();
-                    tmp.add(nums[start]);
-                    tmp.add(nums[end]);
-                    tmp.add(nums[left]);
-                    tmp.add(nums[right]);
-                    Collections.sort(tmp);
-                    if(!exits(res,tmp)){
-                        res.add(tmp);
-                    }
-                    int num = nums[right--];
-                    while(num == nums[right] && left < right){
-                        -- right;
-                    }
-                }else if(sum < target){
-                    ++ left;
-                }else{
-                    -- right;
-                }
-            }
-        }
-    }
-
-    public boolean exits(List<List<Integer>> res ,List<Integer> tmp){
-        if(res.size() == 0){
-            return false;
-        }
-        for(List<Integer> list : res){
-            int len = list.size();
-            int i = 0;
-            for(;i < len; ++i){
-                if(!tmp.get(i).equals(list.get(i))){
-                    break;
-                }
-            }
-            if(i == len){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
+//
+//    public static void main(String[] args) {
+//        FourSum_18 fourSum_18 = new FourSum_18();
+//        int[] nums = {-5,-4,-3,-2,-1,0,0,1,2,3,4,5};
+//        System.out.println(fourSum_18.fourSum(nums,0));
+//    }
+//[]
+//        7[]
+//28
 
     public static void main(String[] args) {
-        FourSum_18 fourSum_18 = new FourSum_18();
-        int[] nums = {-5,-4,-3,-2,-1,0,0,1,2,3,4,5};
-        System.out.println(fourSum_18.fourSum(nums,0));
+        FourSum_18 sum_18 = new FourSum_18();
+        System.out.println(sum_18.fourSum(new int[]{-7,-5,0,7,1,1,-10,-2,7,7,-2,-6,0,-10,-5,7,-8,5},28));
     }
+
+
+//    public List<List<Integer>> fourSum(int[] nums, int target) {
+//        List<List<Integer>> res = new ArrayList<>();
+//        Arrays.sort(nums);
+//        int len = nums.length;
+//        if(len < 4){
+//            return res;
+//        }
+//
+//        for(int i = 0 ; i < len ; ++i){
+//            for(int j = i + 1; j < len ; ++j ){
+//                twoNum(nums,target,i,j,res,len);
+//            }
+//        }
+//
+//        return res;
+//    }
+//
+//    public void twoNum(int[] nums,int target,int start,int end,List<List<Integer>> res,int len){
+//        if(end - start < 2 || start < 0 || end >= len){
+//            return;
+//        }
+//        if(nums[start] + nums[end] + nums[start + 1] + nums[start + 2] > target){
+//            return ;
+//        }else if(nums[start] + nums[end] + nums[end - 1] + nums[end - 2] < target){
+//            return ;
+//        }else{
+//            int left = start + 1;
+//            int right = end - 1;
+//            while (left < right){
+//                int sum = nums[start] + nums[end] + nums[left] + nums[right];
+//                if(sum == target){
+//                    List<Integer> tmp = new ArrayList<>();
+//                    tmp.add(nums[start]);
+//                    tmp.add(nums[end]);
+//                    tmp.add(nums[left]);
+//                    tmp.add(nums[right]);
+//                    Collections.sort(tmp);
+//                    if(!exits(res,tmp)){
+//                        res.add(tmp);
+//                    }
+//                    int num = nums[right--];
+//                    while(num == nums[right] && left < right){
+//                        -- right;
+//                    }
+//                }else if(sum < target){
+//                    ++ left;
+//                }else{
+//                    -- right;
+//                }
+//            }
+//        }
+//    }
+//
+//    public boolean exits(List<List<Integer>> res ,List<Integer> tmp){
+//        if(res.size() == 0){
+//            return false;
+//        }
+//        for(List<Integer> list : res){
+//            int len = list.size();
+//            int i = 0;
+//            for(;i < len; ++i){
+//                if(!tmp.get(i).equals(list.get(i))){
+//                    break;
+//                }
+//            }
+//            if(i == len){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+
+
+
 }
 
 /*

@@ -1,2 +1,2 @@
 # Leetcode
-leetcode online judge
+leetcode online judge.
